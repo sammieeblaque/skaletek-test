@@ -1,7 +1,6 @@
 import { useState, useCallback, useMemo } from "react";
 import ActivityTable from "./components/ActivityTable";
 import { Activity } from "./@types";
-import { AppVar } from "./app-var";
 
 export default function App() {
   const [activities, setActivities] = useState<Activity[]>([]);
@@ -13,7 +12,9 @@ export default function App() {
 
   const addActivity = useCallback(async () => {
     try {
-      const response = await fetch(AppVar.baseApiUrl);
+      const response = await fetch(
+        "https://bored.api.lewagon.com/api/activity"
+      );
       const activityData = await response.json();
       setActivities((prevActivities) => [...prevActivities, activityData]);
     } catch (error) {
