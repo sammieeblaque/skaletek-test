@@ -8,9 +8,18 @@ export default function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
+  /**
+   * @NOTE: using useCallback or useMemo is a premature optimization.
+   * In the case of a small app such as this, it can be ignored
+   */
+
   const addActivity = useCallback(async () => {
     setIsLoading(true);
     try {
+      /**
+       * @NOTE: This URL can be extracted to an environment variable.
+       * For the purpose of this App, I ultimately decided to leave it in here
+       */
       const response = await fetch(
         "https://bored.api.lewagon.com/api/activity"
       );
