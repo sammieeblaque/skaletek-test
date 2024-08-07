@@ -12,6 +12,7 @@ export default function App() {
 
   const addActivity = useCallback(async () => {
     try {
+      // The url can definitely be extracted to be an environment variable, for the purpose of this project just left it in there
       const response = await fetch(
         "https://bored.api.lewagon.com/api/activity"
       );
