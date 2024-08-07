@@ -1,30 +1,52 @@
-# React + TypeScript + Vite
+# Activity Finder App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+The Activity Finder App is a React-based web application that allows users to discover and manage activities. Users can add random activities, search through them, and delete activities they're no longer interested in.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- Fetch random activities from an external API
+- Add new activities to the list
+- Search functionality to filter activities
+- Delete unwanted activities
+- Responsive design for various screen sizes
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Technologies Used
 
-- Configure the top-level `parserOptions` property like this:
+- React
+- TypeScript
+- Tailwind CSS for styling
+- Fetch API for data retrieval
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+## Getting Started
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+To run this project locally:
+
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Start the development server: `npm start`
+
+## Project Structure
+
+- `App.tsx`: Main component handling state and layout
+- `ActivityTable.tsx`: Reusable component for displaying activities
+
+## API
+
+This project uses the Bored API (https://bored.api.lewagon.com/api/activity) to fetch random activities.
+
+## Future Improvements
+
+- Add ability to edit existing activities
+- Implement user authentication
+- Add categories or tags for better organization
+- Implement local storage to persist activities
+
+## Contributing
+
+Contributions, issues, and feature requests are welcome. Feel free to check [issues page] if you want to contribute.
+
+## License
+
+[MIT License](LICENSE.md)
