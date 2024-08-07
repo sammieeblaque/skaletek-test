@@ -1,18 +1,16 @@
 import { useState, useCallback, useMemo } from "react";
 import ActivityTable from "./components/ActivityTable";
-import { Activity } from "./@types";
+import Loader from "./components/Loader";
+import { IActivity } from "./@types";
 
 export default function App() {
-  const [activities, setActivities] = useState<Activity[]>([]);
+  const [activities, setActivities] = useState<IActivity[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
-
-  /**
-   * Kindly note taht use of useCallback & useMemo can be categorized right now as premature optimization as the application is still small
-   */
+  const [isLoading, setIsLoading] = useState(false);
 
   const addActivity = useCallback(async () => {
+    setIsLoading(true);
     try {
-      // The url can definitely be extracted to be an environment variable, for the purpose of this project just left it in there
       const response = await fetch(
         "https://bored.api.lewagon.com/api/activity"
       );
@@ -20,6 +18,8 @@ export default function App() {
       setActivities((prevActivities) => [...prevActivities, activityData]);
     } catch (error) {
       console.error("Failed to fetch activity:", error);
+    } finally {
+      setIsLoading(false);
     }
   }, []);
 
@@ -50,13 +50,18 @@ export default function App() {
           />
           <button
             onClick={addActivity}
-            className="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-md transition duration-300 ease-in-out text-sm font-medium"
+            className="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-md transition duration-300 ease-in-out text-sm font-medium disabled:opacity-50"
+            disabled={isLoading}
           >
-            Add Activity
+            {isLoading ? "Adding..." : "Add Activity"}
           </button>
         </div>
 
-        <ActivityTable activities={filteredActivities} onDelete={onDelete} />
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <ActivityTable activities={filteredActivities} onDelete={onDelete} />
+        )}
       </div>
     </div>
   );

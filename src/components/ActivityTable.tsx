@@ -1,7 +1,7 @@
-import { Activity } from "../@types";
+import { IActivity } from "../@types";
 
 interface ActivityTableProps {
-  activities: Activity[];
+  activities: IActivity[];
   onDelete: (key: string) => void;
 }
 
